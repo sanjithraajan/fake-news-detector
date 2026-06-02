@@ -5,11 +5,17 @@ import re
 app = Flask(__name__)
 
 # Load model
-with open("../model/fake_news_model.pkl", "rb") as file:
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+model_path = os.path.join(BASE_DIR, "model", "fake_news_model.pkl")
+vectorizer_path = os.path.join(BASE_DIR, "model", "vectorizer.pkl")
+
+with open(model_path, "rb") as file:
     model = pickle.load(file)
 
-# Load vectorizer
-with open("../model/vectorizer.pkl", "rb") as file:
+with open(vectorizer_path, "rb") as file:
     vectorizer = pickle.load(file)
 
 # Text cleaning function
